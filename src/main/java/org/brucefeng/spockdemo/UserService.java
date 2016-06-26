@@ -7,6 +7,4 @@ import java.util.List;
 public interface UserService {
 
     User getUser(int userId);
-
-    List<User> queryUserList(List<Integer> userIds);
 }

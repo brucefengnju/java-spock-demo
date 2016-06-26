@@ -2,8 +2,6 @@ package org.brucefeng.spockdemo;
 
 import org.brucefeng.spockdemo.bean.User;
 
-import java.util.List;
-
 public class UserInfoServiceImpl implements UserService {
     private BasicInfoService basicInfoService;
 
@@ -30,7 +28,5 @@ public class UserInfoServiceImpl implements UserService {
         return null;
     }
 
-    public List<User> queryUserList(List<Integer> userIds) {
-        return null;
-    }
+
 }

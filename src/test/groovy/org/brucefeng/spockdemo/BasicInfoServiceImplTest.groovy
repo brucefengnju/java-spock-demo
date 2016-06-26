@@ -21,9 +21,25 @@ class BasicInfoServiceImplTest extends Specification {
 
     def "getMobileAssert"(){
         when:
-        String mobile = toTestObj.getMobile(3);
+        String mobile = toTestObj.getMobile(4);
         then:
         assert mobile == null;
+
+        when:
+        toTestObj.getMobile(3);
+        then:
+        thrown(IllegalArgumentException)
+    }
+
+    def "getMobileWhere"(){
+        expect:
+        toTestObj.getMobile(userId) == expeted
+
+        where:
+        userId||expeted
+        1||"11111111111"
+        2||"22222222222"
+        4||null
     }
 
 }
