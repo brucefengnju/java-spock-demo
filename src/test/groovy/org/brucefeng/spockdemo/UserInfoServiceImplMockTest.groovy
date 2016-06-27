@@ -6,7 +6,7 @@ import spock.lang.Specification
 class UserInfoServiceImplMockTest extends Specification {
     UserInfoServiceImpl toBeTest = new UserInfoServiceImpl();
     BasicInfoService mockBasic = Mock();
-
+    UserInfoServiceImpl mockedUserService = Mock();
     def setup(){
         toBeTest.setBasicInfoService(mockBasic);
     }
@@ -20,5 +20,23 @@ class UserInfoServiceImplMockTest extends Specification {
         user.getMobile() != null
         user.getMobile().equals("23234355")
 
+    }
+
+    def "getUserWithMockUserService"(){
+        User user = new User(
+                mobile: "test mobile",
+                userId: 222,
+                name:"test name",
+                gender: 2
+        )
+        setup:
+        mockedUserService.getUser(2) >> user
+        when:
+        User result = mockedUserService.getUser(2)
+        then:
+        result != null
+        result.mobile.equals(user.mobile)
+        result.name.equals(user.name)
+        result.gender.equals(user.gender)
     }
 }
