@@ -22,6 +22,32 @@ class UserInfoServiceImplMockTest extends Specification {
 
     }
 
+
+    def "getUserWithBasicMockMultiResult"() {
+        setup:
+        mockBasic = Stub()
+        toBeTest.setBasicInfoService(mockBasic)
+        mockBasic.getMobile(_)>>>["1mobile","2mobile"] >>"3mobile"
+
+        when:
+        User user= toBeTest.getUser(1);
+        then:
+        user != null
+        user.getMobile() != null
+        user.getMobile().equals("1mobile")
+
+        when:
+        user = toBeTest.getUser(1)
+        then:
+        user.getMobile().equals("2mobile")
+
+        when:
+        user = toBeTest.getUser(1)
+        then:
+        user.getMobile().equals("3mobile")
+
+    }
+
     def "getUserWithMockUserService"(){
         User user = new User(
                 mobile: "test mobile",

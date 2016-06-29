@@ -8,4 +8,9 @@ class DemoTest extends Specification {
         expect:
         sum.sum(1,1) == 2
     }
+
+    def "sumtest"(){
+        expect:
+        sum.sum(1,2) == 3
+    }
 }
